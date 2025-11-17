@@ -27,7 +27,7 @@ player is given choices to explore different locations. The player
 can search a location during which he can find clues, solve puzzles
 and talk to the suspects. Each suspect has unique dialogues that the
 player must read carefully to find the real killer. The player can also
-skip a location or research it. All this activities consume energy.
+skip a location or research it. All these activities consume energy.
 Player loses energy as the game progresses and will lose more for each 
 wrong guess or decision. You have to find clues and suspects and in 
 the end, make a final decision to find the killer.
