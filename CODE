@@ -1,0 +1,210 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+int main() {
+    int energy = 100;
+    bool clueScript = false;
+    bool clueMask = false;
+    bool clueDiary = false;
+    bool erenIntroduced = false;
+    bool sashaIntroduced = false;
+    bool leviIntroduced = false;
+    bool reinerIntroduced = false;
+    bool talkEren = false;
+    bool talkLevi = false;
+    bool talkSasha = false;
+    bool talkReiner = false;
+    string location = "Backstage";
+    int choice;
+    // Game intro
+    cout << "\n|||||||||||||||||||||||||||||||\n";
+    cout << "        WELCOME, DETECTIVE!        \n";
+    cout << "|||||||||||||||||||||||||||||||\n\n";
+    cout << "A shocking incident has shaken the Grand Lyric Theatre!\n";
+    cout << "Lead performer Mikasa was found dead just before the final act!\n\n";
+    cout << "Initial police inspection found these suspects:\n";
+    cout << "1) Levi - Lead actor, calm and observant.\n";
+    cout << "2) Sasha - Costume assistant, loud and fiery.\n";
+    cout << "3) Reiner - Veteran performer, disciplined but secretive.\n\n";
+    cout << "Your mission: Investigate, gather clues, interrogate suspects, and solve the mystery.\n\n";
+    cout << "Press Enter to begin investigation...\n";
+    cin.ignore();
+    cin.get();
+    // Game loop
+    while (energy > 0) {
+        cout << "\n---------------------------------\n";
+        cout << "Energy: " << energy << "\n";
+        cout << "Location: " << location << "\n";
+        cout << "\nChoose your action:\n";
+        cout << "* 1 - Search location\n";
+        cout << "* 2 - Move to another location\n";
+        if (clueScript && !talkLevi && leviIntroduced) cout << "* 3 - Talk to Levi\n";
+        if (clueMask && !talkSasha && sashaIntroduced) cout << "* 4 - Talk to Sasha\n";
+        if (clueDiary && !talkReiner && reinerIntroduced) cout << "* 5 - Talk to Reiner\n";
+        cout << "Choice: ";
+        cin >> choice;
+        cin.ignore();
+        cout << "\n";
+        // Searching locations
+        if (choice == 1) {
+            if (location == "Backstage") {
+                if (!clueScript) {
+                    clueScript = true;
+                    leviIntroduced = true;
+                    cout << "You found a torn script page!\n";
+                    cout << "Hint: a cryptic note reads: ekpe esscret in blood matching that of Mikasa\n";
+                    string answer;
+                    int tries = 0;
+                    while (tries < 5) {
+                        cout << "Your answer (lowercase, type 'exit' to skip): ";
+                        getline(cin, answer);
+                        if (answer == "keep secrets") {
+                            cout << "\n******** SUSPECT UNLOCKED ********\n";
+                            cout << "Levi: Lead actor, calm and composed.\n";
+                            cout << "He keeps secrets and rarely speaks about his past.\n";
+                            cout << "Observant and meticulous, he notices details others miss.\n";
+                            cout << "Could he be hiding something sinister?\n\n";
+                            break;
+                        }
+                        else if (answer == "exit") {
+                            cout << "You decided to skip this clue.\n";
+                            energy -= 5;
+                            break;
+                        }
+                        else {
+                            cout << "Incorrect. Try again.\n";
+                            energy -= 5;
+                        }
+                        tries++;
+                    }
+                }
+                else {
+                    cout << "You already found this clue.\n";
+                    energy -= 5;
+                }
+            }
+            else if (location == "Dressing Room") {
+                if (!clueMask) {
+                    clueMask = true;
+                    sashaIntroduced = true;
+                    int answer;
+                    int tries = 0;
+                    while (tries < 5) {
+                        cout << "Lipstick found in Mikasa dressing room but investigation reveals act was to be performaed without lipstick\n";
+                        cout << "1) Sasha  2) Levi  3) Armin\nChoice: ";
+                        cin >> answer;
+                        cin.ignore();
+                        if (answer == 1) {
+                            cout << "\n******** SUSPECT UNLOCKED ********\n";
+                            cout << "Sasha: Costume assistant, loud and fiery.\n";
+                            cout << "She often argues with performers but has a kind heart.\n";
+                            cout << "Sometimes too emotional, but never violent.\n";
+                            cout << "Could her disputes hide a motive?\n\n";
+                            break;
+                        }
+                        else {
+                            cout << "Incorrect. Try again.\n";
+                            energy -= 5;
+                        }
+                        tries++;
+                    }
+                }
+                else {
+                    cout << "You've already discovered the mask clue.\n";
+                    energy -= 5;
+                }
+            }
+            else if (location == "Prop Room") {
+                if (!clueDiary) {
+                    clueDiary = true;
+                    reinerIntroduced = true;
+                    int answer;
+                    int tries = 0;
+                    while (tries < 5) {
+                        cout << "Gun found in the closet with dirt and finger prints\n";
+                        cout << "1) eren  2) reiner  3) sasha\nChoice: ";
+                        cin >> answer;
+                        cin.ignore();
+                        if (answer == 2) {
+                            cout << "\n******** SUSPECT UNLOCKED ********\n";
+                            cout << "Reiner: Veteran performer, strict and disciplined.\n";
+                            cout << "He maintains a calm exterior but his private notes reveal secret meetings.\n";
+                            cout << "Highly respected, yet something seems off.\n";
+                            cout << "Could he be involved in the incident?\n\n";
+                            break;
+                        }
+                        else {
+                            cout << "Incorrect. Try again.\n";
+                            energy -= 5;
+                        }
+                        tries++;
+                    }
+                }
+                else {
+                    cout << "You've already found the clue.\n";
+                    energy -= 5;
+                }
+            }
+            else if (location == "Stage") {
+                cout << "You find a note: 'The final act will reveal everything.'\n";
+                energy -= 2;
+            }
+        }
+        // Moving locations
+        else if (choice == 2) {
+            cout << "\nWhere do you want to go?\n";
+            cout << "* 1 - Backstage\n* 2 - Dressing Room\n* 3 - Stage\n* 4 - Prop Room\nChoice: ";
+            int moveChoice;
+            cin >> moveChoice;
+            cin.ignore();
+            if (moveChoice == 1) location = "Backstage";
+            else if (moveChoice == 2) location = "Dressing Room";
+            else if (moveChoice == 3) location = "Stage";
+            else if (moveChoice == 4) location = "Prop Room";
+            else cout << "Invalid choice.\n";
+        }
+        // Talking to suspects
+        else if (choice == 3 && clueScript && !talkLevi && leviIntroduced) {
+            talkLevi = true;
+            cout << "Levi: 'I was fixing props. I didn't touch Mikasa! But someone altered the script.'\n";
+        }
+        else if (choice == 4 && clueMask && !talkSasha && sashaIntroduced) {
+            talkSasha = true;
+            cout << "Sasha: 'I argued with Mikasa, but I would never harm her!'\n";
+        }
+        else if (choice == 5 && clueDiary && !talkReiner && reinerIntroduced) {
+            talkReiner = true;
+            cout << "Reiner: 'I kept my meetings secret, but I had nothing to do with Mikasa's death.'\n";
+        }
+        else {
+            cout << "Invalid choice.\n";
+            energy -= 5;
+        }
+        // Final accusation
+        if (clueScript && clueMask && clueDiary && talkLevi && talkSasha && talkReiner) {
+            cout << "\nYou've gathered all clues and interrogated all suspects!\n";
+            cout << "Who is the culprit?\n";
+            cout << "1) levi\n2) armin\n3) sasha\n4) reiner\nChoice (number): ";
+            int accuse;
+            cin >> accuse;
+            cin.ignore();
+            if (accuse == 1) {
+                cout << "Correct! Levi staged the scene to cover his mistake.\n The final act was between the lead actor and actress ,gun in closet was of reiner because he is a veteran";
+                break;
+            }
+            else {
+                cout << "Wrong accusation! Energy -10.\n";
+                energy -= 10;
+            }
+        }
+        cout << "\nPress Enter to continue...\n";
+        cin.get();
+    }
+    if (energy <= 0) {
+        cout << "\nYou ran out of energy. The investigation failed.\n";
+    }
+    cout << "\nGame Over. Thank you for playing!\n";
+    return 0;
+}
