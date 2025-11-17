@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#inclue<conio.h>
 using namespace std;
 int main() {
     int energy = 100;
@@ -206,5 +207,6 @@ int main() {
         cout << "\nYou ran out of energy. The investigation failed.\n";
     }
     cout << "\nGame Over. Thank you for playing!\n";
+    _getch();
     return 0;
 }
