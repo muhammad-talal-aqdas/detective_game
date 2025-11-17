@@ -5,19 +5,22 @@
 #inclue<conio.h>
 using namespace std;
 int main() {
-    int energy = 100;
+    int energy = 100;                                          // Player initial stats and clue tracking
     bool clueScript = false;
     bool clueMask = false;
     bool clueDiary = false;
-    bool erenIntroduced = false;
+
+    bool erenIntroduced = false;                            // Flags to track whether suspects have been introduced or not
     bool sashaIntroduced = false;
     bool leviIntroduced = false;
     bool reinerIntroduced = false;
-    bool talkEren = false;
+
+    bool talkEren = false;                                 // Flags for whether player talked to each suspect or not
     bool talkLevi = false;
     bool talkSasha = false;
     bool talkReiner = false;
-    string location = "Backstage";
+
+    string location = "Backstage";                   // Starting location= backstage
     int choice;
     // Game intro
     cout << "\n|||||||||||||||||||||||||||||||\n";
@@ -38,6 +41,7 @@ int main() {
         cout << "\n---------------------------------\n";
         cout << "Energy: " << energy << "\n";
         cout << "Location: " << location << "\n";
+
         cout << "\nChoose your action:\n";
         cout << "* 1 - Search location\n";
         cout << "* 2 - Move to another location\n";
@@ -48,9 +52,10 @@ int main() {
         cin >> choice;
         cin.ignore();
         cout << "\n";
+
         // Searching locations
         if (choice == 1) {
-            if (location == "Backstage") {
+            if (location == "Backstage") {                 // Search Backstage
                 if (!clueScript) {
                     clueScript = true;
                     leviIntroduced = true;
@@ -59,7 +64,7 @@ int main() {
                     string answer;
                     int tries = 0;
                     while (tries < 5) {
-                        cout << "Your answer (lowercase, type 'exit' to skip): ";
+                        cout << "Guess the scrambled word.Your answer (lowercase, type 'exit' to skip): ";
                         getline(cin, answer);
                         if (answer == "keep secrets") {
                             cout << "\n******** SUSPECT UNLOCKED ********\n";
@@ -71,11 +76,11 @@ int main() {
                         }
                         else if (answer == "exit") {
                             cout << "You decided to skip this clue.\n";
-                            energy -= 5;
+                            energy -= 5;                                    // Player skips clue,loses energy
                             break;
                         }
                         else {
-                            cout << "Incorrect. Try again.\n";
+                            cout << "Incorrect. Try again.\n";       //Player makes incorrect guess, loses energy
                             energy -= 5;
                         }
                         tries++;
@@ -83,10 +88,10 @@ int main() {
                 }
                 else {
                     cout << "You already found this clue.\n";
-                    energy -= 5;
+                    energy -= 5;                               //loses energy for repeating same tasks
                 }
             }
-            else if (location == "Dressing Room") {
+            else if (location == "Dressing Room") {           //Search Dressing room
                 if (!clueMask) {
                     clueMask = true;
                     sashaIntroduced = true;
@@ -117,7 +122,7 @@ int main() {
                     energy -= 5;
                 }
             }
-            else if (location == "Prop Room") {
+            else if (location == "Prop Room") {            //search prop room
                 if (!clueDiary) {
                     clueDiary = true;
                     reinerIntroduced = true;
@@ -148,7 +153,7 @@ int main() {
                     energy -= 5;
                 }
             }
-            else if (location == "Stage") {
+            else if (location == "Stage") {                      // search stage
                 cout << "You find a note: 'The final act will reveal everything.'\n";
                 energy -= 2;
             }
@@ -191,12 +196,12 @@ int main() {
             int accuse;
             cin >> accuse;
             cin.ignore();
-            if (accuse == 1) {
+            if (accuse == 1) {                //Output for correct accusation
                 cout << "Correct! Levi staged the scene to cover his mistake.\n The final act was between the lead actor and actress ,gun in closet was of reiner because he is a veteran";
                 break;
             }
             else {
-                cout << "Wrong accusation! Energy -10.\n";
+                cout << "Wrong accusation! Energy -10.\n";     //loses energy for wrong accusation
                 energy -= 10;
             }
         }
@@ -204,9 +209,9 @@ int main() {
         cin.get();
     }
     if (energy <= 0) {
-        cout << "\nYou ran out of energy. The investigation failed.\n";
+        cout << "\nYou ran out of energy. The investigation failed.\n";      //Game fails whem energy runs out
     }
-    cout << "\nGame Over. Thank you for playing!\n";
+    cout << "\nGame Over. Thank you for playing!\n";          //closing message
     _getch();
     return 0;
 }
