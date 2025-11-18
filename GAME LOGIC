@@ -1,0 +1,26 @@
+Initialize energy to 100, set location to "Backstage", and all clues and talk flags to false.
+
+Display the game introduction, scenario, suspects, and mission.
+
+Start the Main Game Loop: continue while energy is greater than 0.
+
+Display current energy, location, and the available action menu 
+1.search 2.move 3.talk
+
+Get the player's choice.
+
+If Choice 1): Check the current location. If a clue is new, set its flag, introduce the suspect, and start a 5 try riddle/puzzle. Correct answers unlock the suspect; incorrect attempts or skipping deduct 5 energy. Already found clues or searching the Stage deduct 5 energy.
+
+If (Choice 2): Get the destination and update the location variable.
+
+If (Choice 3, 4, or 5): If the suspect's clue is found and they haven't been talked to, display dialogue, set the talk flag to true. If invalid, deduct 5 energy.
+
+After any action, check if all three clues are found AND all three suspects have been talked to.
+
+If complete, prompt for the Final Accusation.
+
+If the accusation is Correct (Levi), the game ends successfully.
+
+If the accusation is Incorrect, deduct 10 energy and continue the loop.
+
+If energy reaches 0, the game ends in failure.
