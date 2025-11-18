@@ -1,0 +1,19 @@
+1.	Start the game with energy set to 100. All clues and suspects start locked. The starting location is Backstage.
+2.	Show the introduction, explain the case, and wait for the player to press Enter.
+3.	Begin the main loop.
+4.	Show the player’s current energy, current location, and the actions they can choose.
+5.	Take the player's input.
+6.	If the player chooses to search location:
+ •	Check the current location.
+ •	If its clue has not been found yet, give the clue, unlock the related suspect, and ask the small puzzle or question.
+ •	If the answer is wrong, reduce energy.
+ •	If the clue was already found, inform the player and reduce energy.
+7.	If the player chooses to move to another location:
+ •	Show all possible locations.
+ •	Change the current location based on the player’s choice.
+8.	If the player chooses to talk to a suspect:
+ •	Only allow this if the suspect has been unlocked.
+ •	Show their dialogue and mark them as “talked.”
+9.	After each action, check if all three clues have been found and all three suspects have been talked to. If yes, start the final accusation.
+10.	In the final accusation, let the player choose the culprit. If the choice is correct, the game ends with a win. If it is wrong, reduce energy and continue if possible.
+11.	The game ends either when the player’s energy becomes 0 or when they correctly identify the culprit.
